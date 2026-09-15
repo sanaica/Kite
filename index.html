@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kite - Student Registration System</title>
+</head>
+<body bgcolor="#e8ecf1" style="font-family: Segoe UI, Arial, sans-serif; margin: 0; padding: 40px;">
+
+    <!-- Outer wrapper table for centering -->
+    <table width="850" align="center" cellpadding="0" cellspacing="0">
+
+        <!-- Header Banner — deep navy with color pop -->
+        <tr>
+            <td bgcolor="#0a2647" style="padding: 35px; border: 2px solid #0a2647;" align="center">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="middle">
+                            <img src="logo.jpg" alt="Kite Logo" width="65" height="65" style="vertical-align: middle; border: 2px solid #ffffff;">
+                        </td>
+                        <td width="18"></td>
+                        <td valign="middle">
+                            <font size="7" color="#ffffff"><b>Kite</b></font>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <font size="3" color="#7ec8e3"><b>Student Registration System</b></font>
+                <br><br>
+                <font size="2" color="#a8c5da"><i>Frictionless digital enrollment for incoming students.</i></font>
+            </td>
+        </tr>
+
+        <!-- Colored accent stripe -->
+        <tr>
+            <td height="5" bgcolor="#e94560"></td>
+        </tr>
+
+        <!-- Main Form Body -->
+        <tr>
+            <td bgcolor="#ffffff" style="padding: 30px; border-left: 2px solid #dfe6e9; border-right: 2px solid #dfe6e9;">
+                <form id="registrationForm">
+
+                    <!-- ═══════ 1. Account Setup ═══════ -->
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td bgcolor="#0a2647" style="padding: 12px 18px;">
+                                <font size="3" color="#ffffff"><b>1. Account Setup</b></font>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" cellpadding="10" cellspacing="0" style="border: 1px solid #dfe6e9; border-top: none;">
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right" valign="middle">
+                                <font color="#2c3e50" size="2"><b>Email Address</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="email" id="email" name="email" required placeholder="student@example.com" size="40" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right" valign="middle">
+                                <font color="#2c3e50" size="2"><b>Password</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="password" id="password" name="password" required minlength="8" size="40" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                                <br><font size="1" color="#7f8c8d"><i>Minimum 8 characters</i></font>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <!-- ═══════ 2. Personal Information ═══════ -->
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td bgcolor="#2980b9" style="padding: 12px 18px;">
+                                <font size="3" color="#ffffff"><b>2. Personal Information</b></font>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" cellpadding="10" cellspacing="0" style="border: 1px solid #dfe6e9; border-top: none;">
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>First Name</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="firstName" name="firstName" required size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Last Name</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="lastName" name="lastName" required size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Date of Birth</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="date" id="dob" name="dob" required max="2009-12-31" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                                <br><font size="1" color="#7f8c8d"><i>Must have completed high school to enroll</i></font>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Gender / Pronouns</b></font>
+                            </td>
+                            <td>
+                                <select id="gender" name="gender" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                                    <option value="">Select option...</option>
+                                    <option value="he/him">He / Him</option>
+                                    <option value="she/her">She / Her</option>
+                                    <option value="they/them">They / Them</option>
+                                    <option value="other">Other / Prefer not to say</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <!-- ═══════ 3. Contact Details ═══════ -->
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td bgcolor="#27ae60" style="padding: 12px 18px;">
+                                <font size="3" color="#ffffff"><b>3. Contact Details</b></font>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" cellpadding="10" cellspacing="0" style="border: 1px solid #dfe6e9; border-top: none;">
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Phone Number</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="tel" id="phone" name="phone" required pattern="[0-9+\-\s()]+" size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <!-- Address sub-header -->
+                        <tr>
+                            <td colspan="2" bgcolor="#eaf5ee" style="padding: 8px 18px; border-bottom: 1px solid #c8e6c9;">
+                                <font color="#1e8449" size="2"><b>Residential Address</b></font>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Street</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="street" name="street" required size="45" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>City</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="city" name="city" required size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>State / Province</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="state" name="state" required size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Zip / Postal Code</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="zip" name="zip" required size="15" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <!-- Emergency Contact sub-header -->
+                        <tr>
+                            <td colspan="2" bgcolor="#fdf2f0" style="padding: 8px 18px; border-bottom: 1px solid #f5c6cb;">
+                                <font color="#c0392b" size="2"><b>Emergency Contact</b></font>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Contact Name</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="emergencyName" name="emergencyName" required size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Relationship</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="text" id="emergencyRel" name="emergencyRel" required size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Phone Number</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <input type="tel" id="emergencyPhone" name="emergencyPhone" required pattern="[0-9+\-\s()]+" size="30" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <!-- ═══════ 4. Academic Details ═══════ -->
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td bgcolor="#8e44ad" style="padding: 12px 18px;">
+                                <font size="3" color="#ffffff"><b>4. Academic Details</b></font>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" cellpadding="10" cellspacing="0" style="border: 1px solid #dfe6e9; border-top: none;">
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Program / Course</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <select id="program" name="program" required style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                                    <option value="">Select a program...</option>
+                                    <option value="ce">Computer Engineering</option>
+                                    <option value="it">Information Technology</option>
+                                    <option value="extc">Electronics and Telecommunication</option>
+                                    <option value="cse">Computer Science with Engineering</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Enrollment Term</b></font>
+                                <font color="#e94560"> *</font>
+                            </td>
+                            <td>
+                                <select id="term" name="term" required style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                                    <option value="">Select a term...</option>
+                                    <option value="Fall 2027">Fall 2027</option>
+                                    <option value="Spring 2027">Spring 2027</option>
+                                    <option value="Fall 2028">Fall 2028</option>
+                                    <option value="Spring 2028">Spring 2028</option>
+                                    <option value="Fall 2029">Fall 2029</option>
+                                    <option value="Spring 2029">Spring 2029</option>
+                                    <option value="Fall 2030">Fall 2030</option>
+                                    <option value="Spring 2030">Spring 2030</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f7f9fc">
+                            <td width="200" align="right">
+                                <font color="#2c3e50" size="2"><b>Previous Education</b></font>
+                            </td>
+                            <td>
+                                <input type="text" id="prevEducation" name="prevEducation" placeholder="High school or college name" size="40" style="padding: 8px 12px; background-color: #f0f4f8; color: #2c3e50; border: 1px solid #b0bec5; font-size: 14px;">
+                                <br><font size="1" color="#7f8c8d"><i>Optional</i></font>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <!-- Submit Button -->
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" style="padding: 15px;">
+                                <button type="submit" style="background-color: #e94560; color: #ffffff; border: 2px solid #c0392b; padding: 14px 60px; font-size: 16px; font-weight: bold; cursor: pointer; letter-spacing: 1px;">SUBMIT REGISTRATION</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <!-- Success Message -->
+                <div id="successMessage" style="display: none;">
+                    <table width="100%" cellpadding="25" cellspacing="0" bgcolor="#eafaf1" style="border: 2px solid #27ae60;">
+                        <tr>
+                            <td align="center">
+                                <font size="6" color="#27ae60"><b>Registration Successful!</b></font>
+                                <br><br>
+                                <font size="3" color="#2c3e50">Welcome to Kite. Your generated Student ID is:</font>
+                                <br><br>
+                                <table cellpadding="15" cellspacing="0" bgcolor="#ffffff" style="border: 2px solid #0a2647;">
+                                    <tr>
+                                        <td align="center">
+                                            <font size="5" color="#0a2647"><b id="generated-id">KITE-000000</b></font>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <font size="2" color="#7f8c8d"><i>Please save this ID for your records.</i></font>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+            <td bgcolor="#0a2647" style="padding: 15px; border: 2px solid #0a2647; border-top: none;" align="center">
+                <font size="1" color="#7ec8e3">&#169; 2026 Kite Registration System</font>
+            </td>
+        </tr>
+    </table>
+
+    <script src="app.js"></script>
+</body>
+</html>
