@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const PIN_REGEX = /(^|\D)[1-9][0-9]{2}\s?[0-9]{3}(?![0-9])/; // 6-digit PIN code, e.g. 400001 or 400 001
     const DOB_LATEST = '2009-12-31'; // must have completed high school
     const DOB_EARLIEST = '1900-01-01';
+    const MAX_MARKSHEET_MB = 5; // largest marksheet PDF we accept
     // ------------------------------------------------------------------
     // Small helpers
     // ------------------------------------------------------------------
@@ -142,6 +143,28 @@ document.addEventListener('DOMContentLoaded', () => {
             return 'Previous education must include a school or college name.';
         return '';
     }
+    let marksheetSignature = 'none';
+    function validateMarksheet() {
+        const input = el('marksheet');
+        const file = input.files && input.files[0];
+        if (!file)
+            return 'Upload your 12th marksheet as a PDF.';
+        if (!/\.pdf$/i.test(file.name) || (file.type !== '' && file.type !== 'application/pdf')) {
+            return 'Only PDF files are accepted. Choose a file that ends in .pdf.';
+        }
+        if (file.size === 0)
+            return 'This file is empty. Choose a valid PDF.';
+        if (file.size > MAX_MARKSHEET_MB * 1024 * 1024) {
+            const mb = (file.size / (1024 * 1024)).toFixed(1);
+            return 'This file is ' + mb + ' MB. The maximum size is ' + MAX_MARKSHEET_MB + ' MB.';
+        }
+        if (marksheetSignature === 'bad') {
+            return 'This file is not a valid PDF. Export or scan your marksheet as a PDF and upload it again.';
+        }
+        if (marksheetSignature === 'pending')
+            return 'Still checking the file. Try again in a moment.';
+        return '';
+    }
     // ------------------------------------------------------------------
     // Field list
     // ------------------------------------------------------------------
@@ -173,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
         rule('emergencyPhone', 'Emergency Phone Number', validateEmergencyPhone),
         rule('program', 'Program / Course', () => validateRequiredSelect('program', 'Select a program / course.')),
         rule('term', 'Enrollment Term', () => validateRequiredSelect('term', 'Select an enrollment term.')),
-        rule('prevEducation', 'Previous Education', validatePrevEducation)
+        rule('prevEducation', 'Previous Education', validatePrevEducation),
+        rule('marksheet', '12th Marksheet (PDF)', validateMarksheet)
     ];
     // ------------------------------------------------------------------
     // Showing / clearing errors
@@ -245,6 +269,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Live feedback: check a field when the user leaves it, then keep
     // re-checking as they type so the error clears as soon as it's fixed.
     // ------------------------------------------------------------------
+    const marksheetRule = rules.filter((r) => r.id === 'marksheet')[0];
+    const marksheetInput = el('marksheet');
+    marksheetInput.addEventListener('change', () => {
+        const file = marksheetInput.files && marksheetInput.files[0];
+        if (!file) {
+            marksheetSignature = 'none';
+            return;
+        }
+        marksheetSignature = 'pending';
+        const reader = new FileReader();
+        reader.onload = () => {
+            // Ignore the result if the user has already picked a different file
+            if (!marksheetInput.files || marksheetInput.files[0] !== file)
+                return;
+            // A PDF starts with "%PDF-" (allowing a little junk before it, as the spec does)
+            const bytes = new Uint8Array(reader.result);
+            const magic = [0x25, 0x50, 0x44, 0x46, 0x2d];
+            let found = false;
+            for (let i = 0; i + magic.length <= bytes.length && !found; i++) {
+                let match = true;
+                for (let j = 0; j < magic.length; j++) {
+                    if (bytes[i + j] !== magic[j]) {
+                        match = false;
+                        break;
+                    }
+                }
+                found = match;
+            }
+            marksheetSignature = found ? 'ok' : 'bad';
+            checkField(marksheetRule);
+        };
+        reader.onerror = () => {
+            marksheetSignature = 'bad';
+            checkField(marksheetRule);
+        };
+        reader.readAsArrayBuffer(file.slice(0, 1024));
+    });
     const touched = {};
     rules.forEach((r) => {
         const recheck = () => {
