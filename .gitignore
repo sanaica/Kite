@@ -1,0 +1,5 @@
+node_modules/
+uploads/
+kite_local.db
+dist/
+.DS_Store
