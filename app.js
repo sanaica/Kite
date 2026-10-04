@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMessage = 'Please enter a valid email address.';
                 }
             } else if (input.id === 'password') {
-                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!\%*?&]{8,}$/;
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
                 if (!passwordRegex.test(value)) {
                     isValid = false;
                     errorMessage = 'Password must have 8+ chars, 1 uppercase, 1 lowercase, 1 number, and 1 special char.';
@@ -214,14 +214,23 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             if (submitBtn) submitBtn.disabled = true;
 
+            // Build a plain object for JSON (exclude the file — no server-side storage)
             const formData = new FormData(form);
+            const payload = {};
+            formData.forEach((value, key) => {
+                if (typeof value === 'string') {
+                    payload[key] = value;
+                }
+            });
+
             let result;
 
             // Attempt API Call (or fallback gracefully if server is offline)
             try {
                 const response = await fetch('/api/register', {
                     method: 'POST',
-                    body: formData
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
                 if (response.ok) {
                     result = await response.json();
